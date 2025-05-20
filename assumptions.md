@@ -2,6 +2,7 @@
 
 ## Setup
 
-- Opted for Turbopack for build time optimization.
-- Opted for Tailwind CSS for styling.
-- Opted for ESLint for code quality.
+- Turbopack for build time optimization.
+- Tailwind CSS for styling.
+- ESLint for code quality.
+- Prettier for code formatting.
