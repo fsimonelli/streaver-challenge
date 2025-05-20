@@ -24,7 +24,7 @@ export default function Posts() {
     debouncedSearch === '' ? 'all' : debouncedSearch,
     fetcher,
     {
-      loadingTimeout: 2000,
+      loadingTimeout: 3000,
       onLoadingSlow: () => {
         toast('Loading is taking longer than expected...', {
           position: 'top-right',
