@@ -31,6 +31,12 @@ export default function Posts() {
           hideProgressBar: true,
         });
       },
+      onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
+        if (retryCount >= 3) return;
+
+        // Retry after 5 seconds.
+        setTimeout(() => revalidate({ retryCount }), 5000);
+      },
       onSuccess: dismiss,
     },
   );
