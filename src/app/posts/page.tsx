@@ -7,7 +7,6 @@ import { useState } from 'react';
 import useDebounce from '@/utils/useDebounce';
 import SearchBar from '@/app/ui/SearchBar';
 import { toast, ToastContainer } from 'react-toastify';
-import Link from 'next/link';
 import { PulseLoader } from 'react-spinners';
 
 export default function Posts() {
@@ -32,18 +31,18 @@ export default function Posts() {
           hideProgressBar: true,
         });
       },
+      onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
+        if (retryCount >= 3) return;
+
+        // Retry after 5 seconds.
+        setTimeout(() => revalidate({ retryCount }), 5000);
+      },
       onSuccess: dismiss,
     },
   );
 
   return (
     <div className='flex flex-col items-center justify-center'>
-      <Link
-        href='/'
-        className='absolute top-0.5 left-4 m-4 grow gap-2 rounded-md bg-gray-800 p-3 text-sm font-medium hover:bg-gray-600 hover:text-gray-50 md:flex-none md:justify-start md:p-2 md:px-3'
-      >
-        Back to Home
-      </Link>
       <SWRConfig
         value={{
           revalidateOnReconnect: true,
